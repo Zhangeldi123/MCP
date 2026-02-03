@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      DATABASE_URL: "sqlite+aiosqlite:////app/data/app.db"
+      ALEMBIC_DATABASE_URL: "sqlite:////app/data/app.db"
+      MCP_PRODUCTS_CMD: "python -m app.mcp_server.products_server"
+      MCP_ORDERS_CMD: "python -m app.mcp_server.orders_server"
